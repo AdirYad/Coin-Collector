@@ -1,0 +1,10 @@
+public void mousePressed(MouseEvent a) {
+    animation = walkLeft;
+    animation.start();
+}
+
+public void mouseReleased(MouseEvent a) {
+    animation.stop();
+    animation.reset();
+    animation = standing;
+}
