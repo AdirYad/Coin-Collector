@@ -26,7 +26,6 @@ public class Animation {
         this.currentFrame = 0;
         this.animationDirection = 1;
         this.totalFrames = this.frames.size();
-
     }
 
     public void start() {

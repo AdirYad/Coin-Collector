@@ -50,6 +50,6 @@ public class Window {
 		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
 		graphics.drawImage(Sprite.getSprite(0, 0), 111, 111, null);
 //		player.minotaur.update();
-		bs.show();
+		bs.show(); 
 	}
 }
