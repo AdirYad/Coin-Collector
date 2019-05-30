@@ -2,7 +2,7 @@ import java.awt.image.BufferedImage;
 
 public class Player {
 	//Images for each animation
-		private BufferedImage[] minotaurIdle = {
+		BufferedImage[] minotaurIdle = {
 			Sprite.getSprite(0, 0),
 			Sprite.getSprite(1, 0),
 			Sprite.getSprite(2, 0),

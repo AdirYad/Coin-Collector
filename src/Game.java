@@ -4,7 +4,6 @@ public class Game implements Runnable {
 	private Thread thread;
 	private Window window;
 	private Player player;
-//	private Renderer renderer;
 	private Graphics graphics;
 	
 	private boolean running = false;
@@ -24,8 +23,8 @@ public class Game implements Runnable {
 		running = true;
 		
 		window = new Window(width, height, scale, title, this);
+		graphics.drawImage(player.minotaur.getSprite(), 111, 111, null);
 		
-//		renderer = new Renderer(this);
 		thread = new Thread(this);
 		thread.run();
 	}
@@ -77,7 +76,6 @@ public class Game implements Runnable {
 			}
 			
 			if(render) {
-//				renderer.clear();
 				window.update();
 				frames++;
 			} else {
