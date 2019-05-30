@@ -43,8 +43,8 @@ public class Window {
 	}
 
 	public void update() {
-		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null);
-		player.minotaur.update();
+		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
+		player.minotaur.update(); // updating the minotaur
 		bs.show(); 
 	}
 }

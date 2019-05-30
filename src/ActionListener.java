@@ -1,6 +1,6 @@
 import java.awt.event.MouseEvent;
 
-public class MovementsEvents {
+public class ActionListener {
 	private Player player;
 
 	// Move Left
