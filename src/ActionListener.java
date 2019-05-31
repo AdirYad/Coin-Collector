@@ -46,28 +46,21 @@ public class ActionListener implements KeyListener {
 	public void keyTyped(KeyEvent e) {}
 
 	public void moveLeft() {
-//    	System.out.println("Left");
 	    Player.minotaur = Player.MinoWalkLeft;
 	    Player.minotaur.start();
 	}
 	
 	public void moveRight() {
-//    	System.out.println("Right");
 	    Player.minotaur = Player.MinoWalkRight;
 	    Player.minotaur.start();
 	}
 	
 	public void attack() {
-//    	System.out.println("attack");
 	    Player.minotaur = Player.MinoAttack1;
 	    Player.minotaur.start();
 	}
 	
 	public void idle() {
-//		System.out.println("idling");
-//		Player.minotaur.stop();
-//		Player.minotaur.reset();
-		
 		Player.minotaur = Player.MinoIdle;
 	    Player.minotaur.start();
 	}

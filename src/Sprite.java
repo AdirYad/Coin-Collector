@@ -20,7 +20,7 @@ public class Sprite {
 
     public static BufferedImage getSprite(int xGrid, int yGrid) {
         if (spriteSheet == null) {
-            spriteSheet = loadSprite("mino_80x80.png");
+            spriteSheet = loadSprite("Untitled-1.png");
         }
 
         return spriteSheet.getSubimage(xGrid * TILE_SIZEx, yGrid * TILE_SIZEy, TILE_SIZEx, TILE_SIZEy);

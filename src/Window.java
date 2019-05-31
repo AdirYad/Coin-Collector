@@ -65,10 +65,9 @@ public class Window {
 	}
 	
 	private int c;
-	
+			
 	public void update() {
-		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
-		graphics.drawImage(Player.minotaur.getSprite(), canvas.getWidth() / 2, canvas.getHeight() - 138, 120, 120, null);
+		paint();
 		Player.minotaur.update(); // updating the minotaur
 		c++;
 		if(c >= 300) {
@@ -76,5 +75,11 @@ public class Window {
 			printUsage();
 		}
 		bs.show();
+	}
+	
+	public void paint() {
+//		graphics.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
+		graphics.drawImage(Player.minotaur.getSprite(), canvas.getWidth() / 2, canvas.getHeight() - 138, 120, 120, null);
 	}
 }
