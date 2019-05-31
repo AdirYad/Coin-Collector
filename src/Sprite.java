@@ -4,8 +4,8 @@ import javax.imageio.ImageIO;
 
 public class Sprite {
     private static BufferedImage spriteSheet;
-    private static final int TILE_SIZEx = 103;
-    private static final int TILE_SIZEy = 90;
+    private static final int TILE_SIZEx = 80;
+    private static final int TILE_SIZEy = 80;
 
     public static BufferedImage loadSprite(String file) {
         try {
@@ -20,7 +20,7 @@ public class Sprite {
 
     public static BufferedImage getSprite(int xGrid, int yGrid) {
         if (spriteSheet == null) {
-            spriteSheet = loadSprite("Minotaur_103x90.png");
+            spriteSheet = loadSprite("mino_80x80.png");
         }
 
         return spriteSheet.getSubimage(xGrid * TILE_SIZEx, yGrid * TILE_SIZEy, TILE_SIZEx, TILE_SIZEy);

@@ -25,17 +25,14 @@ public class Player {
 			Sprite.getSprite(1, 1),
 			Sprite.getSprite(2, 1),
 			Sprite.getSprite(3, 1),
-			Sprite.getSprite(4, 1),
-			Sprite.getSprite(5, 1),
-			Sprite.getSprite(6, 1),
-			Sprite.getSprite(7, 1)
+			Sprite.getSprite(4, 1)
 		};
 		static final BufferedImage[] walkingLeft = {
-			Sprite.getSprite(0, 12),
-			Sprite.getSprite(1, 12),
-			Sprite.getSprite(2, 12),
-			Sprite.getSprite(3, 12),
-			Sprite.getSprite(4, 12)
+			Sprite.getSprite(0, 2),
+			Sprite.getSprite(1, 2),
+			Sprite.getSprite(2, 2),
+			Sprite.getSprite(3, 2),
+			Sprite.getSprite(4, 2)
 		};
 		
 		//These are animation states

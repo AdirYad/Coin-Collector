@@ -6,7 +6,28 @@ import java.awt.image.BufferedImage;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+
 public class Window {
+	private static void printUsage() {
+	  OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
+	  for (Method method : operatingSystemMXBean.getClass().getDeclaredMethods()) {
+	    method.setAccessible(true);
+	    if (method.getName().startsWith("get")
+	        && Modifier.isPublic(method.getModifiers())) {
+	            Object value;
+	        try {
+	            value = method.invoke(operatingSystemMXBean);
+	        } catch (Exception e) {
+	            value = e;
+	        } // try
+	        System.out.println(method.getName() + " = " + value);
+	    } // if
+	  } // for
+	}
 	private Canvas canvas;
 	private JFrame frame;
 	private BufferStrategy bs;
@@ -36,16 +57,24 @@ public class Window {
 		
 		map = Sprite.loadSprite("mapOLD.jpg");
 		
-		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
-		graphics.drawImage(Player.minotaur.getSprite(), canvas.getWidth() / 2, canvas.getHeight() - 110, null);
+//		graphics.drawImage(Player.minotaur.getSprite(), canvas.getWidth() / 2, canvas.getHeight() - 110, null);
 	}
 	
 	public Canvas getCanvas() {
 		return canvas;
 	}
 	
+	private int c;
+	
 	public void update() {
+		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
+		graphics.drawImage(Player.minotaur.getSprite(), canvas.getWidth() / 2, canvas.getHeight() - 138, 120, 120, null);
 		Player.minotaur.update(); // updating the minotaur
-		bs.show(); 
+		c++;
+		if(c >= 300) {
+			c = 0;
+			printUsage();
+		}
+		bs.show();
 	}
 }

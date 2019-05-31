@@ -73,26 +73,21 @@ public class Animation {
     }
 
     public BufferedImage getSprite() {
-    	System.out.println(currentFrame + "moshe");
         return frames.get(currentFrame).getFrame();
     }
 
     public void update() {
         if(!stopped) {
-        	System.out.println("yes");
             frameCount++;
 
             if(frameCount > frameDelay) {
-            	System.out.println(currentFrame);
                 frameCount = 0;
                 currentFrame += animationDirection;
 
                 if(currentFrame > totalFrames - 1) {
-                	System.out.println("yes2");
                     currentFrame = 0;
                 }
                 else if(currentFrame < 0) {
-                	System.out.println("yes3");
                     currentFrame = totalFrames - 1;
                 }
             }
