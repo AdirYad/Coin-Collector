@@ -1,46 +1,106 @@
 import java.awt.image.BufferedImage;
 
+enum PlayerDirection {
+	LEFT,
+	RIGHT
+}
+
 public class Player {
+	static PlayerDirection direction = PlayerDirection.RIGHT;
+	static int x;
+	static int y;
+	static int STEP = 12;
+	
 	//Images for each animation
-		static final BufferedImage[] minotaurIdle = {
-			Sprite.getSprite(0, 0),
-			Sprite.getSprite(1, 0),
-			Sprite.getSprite(2, 0),
-			Sprite.getSprite(3, 0),
-			Sprite.getSprite(4, 0)
+	static final BufferedImage[] minotaurIdleRight = {
+		Sprite.getPlayerSprite(0, 0),
+		Sprite.getPlayerSprite(1, 0),
+		Sprite.getPlayerSprite(2, 0),
+		Sprite.getPlayerSprite(3, 0),
+		Sprite.getPlayerSprite(4, 0)
+	};
+	static final BufferedImage[] minotaurIdleLeft = {
+		Sprite.getPlayerSprite(0, 1),
+		Sprite.getPlayerSprite(1, 1),
+		Sprite.getPlayerSprite(2, 1),
+		Sprite.getPlayerSprite(3, 1),
+		Sprite.getPlayerSprite(4, 1)
+	};
+	static final BufferedImage[] minotaurAttackRight = {
+		Sprite.getPlayerSprite(0, 4),
+		Sprite.getPlayerSprite(1, 4),
+		Sprite.getPlayerSprite(2, 4),
+		Sprite.getPlayerSprite(3, 4),
+		Sprite.getPlayerSprite(4, 4),
+		Sprite.getPlayerSprite(5, 4),
+		Sprite.getPlayerSprite(6, 4),
+		Sprite.getPlayerSprite(7, 4),
+		Sprite.getPlayerSprite(8, 4)
+	};
+	static final BufferedImage[] minotaurAttackLeft = {
+			Sprite.getPlayerSprite(0, 5),
+			Sprite.getPlayerSprite(1, 5),
+			Sprite.getPlayerSprite(2, 5),
+			Sprite.getPlayerSprite(3, 5),
+			Sprite.getPlayerSprite(4, 5),
+			Sprite.getPlayerSprite(5, 5),
+			Sprite.getPlayerSprite(6, 5),
+			Sprite.getPlayerSprite(7, 5),
+			Sprite.getPlayerSprite(8, 5)
 		};
-		static final BufferedImage[] minotaurAttack1 = {
-			Sprite.getSprite(0, 3),
-			Sprite.getSprite(1, 3),
-			Sprite.getSprite(2, 3),
-			Sprite.getSprite(3, 3),
-			Sprite.getSprite(4, 3),
-			Sprite.getSprite(5, 3),
-			Sprite.getSprite(6, 3),
-			Sprite.getSprite(7, 3),
-			Sprite.getSprite(8, 3)
-		};
-		static final BufferedImage[] walkingRight = {
-			Sprite.getSprite(0, 1),
-			Sprite.getSprite(1, 1),
-			Sprite.getSprite(2, 1),
-			Sprite.getSprite(3, 1),
-			Sprite.getSprite(4, 1)
-		};
-		static final BufferedImage[] walkingLeft = {
-			Sprite.getSprite(0, 2),
-			Sprite.getSprite(1, 2),
-			Sprite.getSprite(2, 2),
-			Sprite.getSprite(3, 2),
-			Sprite.getSprite(4, 2)
-		};
+	static final BufferedImage[] walkingRight = {
+		Sprite.getPlayerSprite(0, 2),
+		Sprite.getPlayerSprite(1, 2),
+		Sprite.getPlayerSprite(2, 2),
+		Sprite.getPlayerSprite(3, 2),
+		Sprite.getPlayerSprite(4, 2)
+	};
+	static final BufferedImage[] walkingLeft = {
+		Sprite.getPlayerSprite(0, 3),
+		Sprite.getPlayerSprite(1, 3),
+		Sprite.getPlayerSprite(2, 3),
+		Sprite.getPlayerSprite(3, 3),
+		Sprite.getPlayerSprite(4, 3)
+	};
+	
+	//These are animation states
+	static final Animation MinoIdleRight = new Animation(minotaurIdleRight, 5);
+	static final Animation MinoIdleLeft = new Animation(minotaurIdleLeft, 5);
+	static final Animation MinoAttackRight = new Animation(minotaurAttackRight, 8);
+	static final Animation MinoAttackLeft = new Animation(minotaurAttackLeft, 8);
+	static final Animation MinoWalkRight = new Animation(walkingRight, 5);
+	static final Animation MinoWalkLeft = new Animation(walkingLeft, 5);
+	
+	//This is the actual animation
+	static Animation minotaur = MinoIdleRight;
+	
+	public static Animation getIdle() {
+		if(direction == PlayerDirection.RIGHT) {
+			return MinoIdleRight;
+		}
+		return MinoIdleLeft;
+	}
+	
+	public static Animation getAttack() {
+		if(direction == PlayerDirection.RIGHT) {
+			return MinoAttackRight;
+		}
+		return MinoAttackLeft;
+	}
+	
+	public static void moveRight() {
+		if(Player.x + STEP <= Game.width - Sprite.minoTILE_SIZEx - 18) {
+			Player.x += STEP;
+		}
 		
-		//These are animation states
-		static final Animation MinoIdle = new Animation(minotaurIdle, 10);
-		static final Animation MinoAttack1 = new Animation(minotaurAttack1, 10);
-		static final Animation MinoWalkRight = new Animation(walkingRight, 10);
-		static final Animation MinoWalkLeft = new Animation(walkingLeft, 10);
+		Player.direction = PlayerDirection.RIGHT;
+	}
+	
+	public static void moveLeft() {
+		if(Player.x - STEP > 0) {
+			Player.x -= STEP;
+		}
 		
-		//This is the actual animation
-		static Animation minotaur = MinoIdle;
+		Player.direction = PlayerDirection.LEFT;
+	}
 }

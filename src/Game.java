@@ -81,7 +81,7 @@ public class Game implements Runnable {
 					fps = frames;
 					frames = 0;
 					
-					System.out.println("FPS: " + fps);
+//					System.out.println("FPS: " + fps);
 				}
 			}
 			

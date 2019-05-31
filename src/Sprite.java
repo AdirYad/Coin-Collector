@@ -3,9 +3,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Sprite {
-    private static BufferedImage spriteSheet;
-    private static final int TILE_SIZEx = 80;
-    private static final int TILE_SIZEy = 80;
+	private static final BufferedImage spriteSheet = loadSprite("mino_80x80.png");
+	private static final BufferedImage spriteSheetMonster = loadSprite("Dwarf.png");
+    public static final int minoTILE_SIZEx = 80;
+    private static final int minoTILE_SIZEy = 80;
+    public static final int monsterTILE_SIZEx = 30;
+    private static final int monsterTILE_SIZEy = 32;
+    
 
     public static BufferedImage loadSprite(String file) {
         try {
@@ -18,11 +22,12 @@ public class Sprite {
         return null;
     }
 
-    public static BufferedImage getSprite(int xGrid, int yGrid) {
-        if (spriteSheet == null) {
-            spriteSheet = loadSprite("Untitled-1.png");
-        }
+    public static BufferedImage getPlayerSprite(int xGrid, int yGrid) {
+        return spriteSheet.getSubimage(xGrid * minoTILE_SIZEx, yGrid * minoTILE_SIZEy, minoTILE_SIZEx, minoTILE_SIZEy);
+    }
 
-        return spriteSheet.getSubimage(xGrid * TILE_SIZEx, yGrid * TILE_SIZEy, TILE_SIZEx, TILE_SIZEy);
+
+    public static BufferedImage getMonsterSprite(int xGrid, int yGrid) {
+        return spriteSheetMonster.getSubimage(xGrid * monsterTILE_SIZEx, yGrid * monsterTILE_SIZEy, monsterTILE_SIZEx, monsterTILE_SIZEy);
     }
 }

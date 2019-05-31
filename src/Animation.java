@@ -39,12 +39,13 @@ public class Animation {
         stopped = false;
     }
 
-    public void stop() {
+    public Animation stop() {
         if (frames.size() == 0) {
-            return;
+            return this;
         }
 
         stopped = true;
+        return this;
     }
 
     public void restart() {
@@ -86,8 +87,7 @@ public class Animation {
 
                 if(currentFrame > totalFrames - 1) {
                     currentFrame = 0;
-                }
-                else if(currentFrame < 0) {
+                } else if(currentFrame < 0) {
                     currentFrame = totalFrames - 1;
                 }
             }

@@ -56,12 +56,12 @@ public class ActionListener implements KeyListener {
 	}
 	
 	public void attack() {
-	    Player.minotaur = Player.MinoAttack1;
+	    Player.minotaur = Player.getAttack();
 	    Player.minotaur.start();
 	}
 	
 	public void idle() {
-		Player.minotaur = Player.MinoIdle;
+		Player.minotaur = Player.getIdle();
 	    Player.minotaur.start();
 	}
 }
