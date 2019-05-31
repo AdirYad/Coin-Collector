@@ -9,7 +9,7 @@ public class Player {
 	static PlayerDirection direction = PlayerDirection.RIGHT;
 	static int x;
 	static int y;
-	static int STEP = 12;
+	static int STEP = 2;
 	
 	//Images for each animation
 	static final BufferedImage[] minotaurIdleRight = {
@@ -66,8 +66,8 @@ public class Player {
 	//These are animation states
 	static final Animation MinoIdleRight = new Animation(minotaurIdleRight, 5);
 	static final Animation MinoIdleLeft = new Animation(minotaurIdleLeft, 5);
-	static final Animation MinoAttackRight = new Animation(minotaurAttackRight, 8);
-	static final Animation MinoAttackLeft = new Animation(minotaurAttackLeft, 8);
+	static final Animation MinoAttackRight = new Animation(minotaurAttackRight, 6);
+	static final Animation MinoAttackLeft = new Animation(minotaurAttackLeft, 6);
 	static final Animation MinoWalkRight = new Animation(walkingRight, 5);
 	static final Animation MinoWalkLeft = new Animation(walkingLeft, 5);
 	

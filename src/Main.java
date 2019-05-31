@@ -27,7 +27,7 @@ public class Main extends AbstractGame {
 	}
 	
 	public boolean isAttacking() {
-		if(lastAttackFrame > 0 && frame > 0 && lastAttackFrame + 72 > frame) {
+		if(lastAttackFrame > 0 && frame > 0 && lastAttackFrame + 54 > frame) {
 			return true;
 		}
 		

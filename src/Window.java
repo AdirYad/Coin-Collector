@@ -57,7 +57,7 @@ public class Window {
 	}
 	
 	public void paint() {
-		Monster m1 = new Monster(100, 11);
+//		Monster m1 = new Monster(100, 11);
 		graphics.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
 		graphics.drawImage(Player.minotaur.getSprite(), Player.x, Player.y, 120, 120, null);
