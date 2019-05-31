@@ -1,10 +1,8 @@
-import java.awt.Graphics;
-
 public class Game implements Runnable {
 	private Thread thread;
 	private Window window;
-	private Player player;
-	private Graphics graphics;
+	private ActionListener al;
+	private AbstractGame game;
 	
 	private boolean running = false;
 	private final double UPDATE_CAP = 1.0/60.0;
@@ -13,7 +11,11 @@ public class Game implements Runnable {
 	public static final int height = 1000;
 	public static final float scale = 1f;
 	public static final String title = "Mapler4fun";
-
+	
+	public Game(AbstractGame game) {
+		this.game = game;
+	}
+	
 	public Window getWindow() {
 		return window;
 	}
@@ -23,12 +25,16 @@ public class Game implements Runnable {
 		running = true;
 		
 		window = new Window(width, height, scale, title, this);
-		graphics.drawImage(player.minotaur.getSprite(), 111, 111, null);
+		al = new ActionListener(this);
 		
 		thread = new Thread(this);
 		thread.run();
 	}
 	
+	public ActionListener getAl() {
+		return al;
+	}
+
 	public synchronized void stop() {
 		if(!running) 
 			return;
@@ -65,6 +71,10 @@ public class Game implements Runnable {
 			while(unprocessedTime >= UPDATE_CAP) {
 				unprocessedTime -= UPDATE_CAP;
 				render = true;
+				
+				game.update(this, (float)UPDATE_CAP);
+				
+				al.update();
 
 				if(frameTime >= 1.0) {
 					frameTime = 0;

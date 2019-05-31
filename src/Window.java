@@ -12,9 +12,8 @@ public class Window {
 	private BufferStrategy bs;
 	private Graphics graphics;
 	private BufferedImage map;
-	private Player player;
 	
-	public Window(int width, int height, float scale, String title, Game game) {
+	public Window(int width, int height, float scale, String title, Game game) {		
 		canvas = new Canvas();
 		Dimension dimension = new Dimension((int) (width * scale), (int) (height * scale));
 
@@ -36,15 +35,17 @@ public class Window {
 		graphics = bs.getDrawGraphics();
 		
 		map = Sprite.loadSprite("mapOLD.jpg");
+		
+		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
+		graphics.drawImage(Player.minotaur.getSprite(), canvas.getWidth() / 2, canvas.getHeight() - 110, null);
 	}
 	
 	public Canvas getCanvas() {
 		return canvas;
 	}
-
+	
 	public void update() {
-		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
-		player.minotaur.update(); // updating the minotaur
+		Player.minotaur.update(); // updating the minotaur
 		bs.show(); 
 	}
 }

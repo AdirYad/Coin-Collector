@@ -1,41 +1,72 @@
-import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class ActionListener {
-	private Player player;
+public class ActionListener implements KeyListener {
+	private Game gm;
+	
+	private final int NUM_KEYS = 256;
+	private boolean[] keys = new boolean[NUM_KEYS];
+	private boolean[] keysLast = new boolean[NUM_KEYS];
 
-	// Move Left
-	public void mousePressedLeft(MouseEvent a) {
-	    player.minotaur = player.MinoWalkLeft;
-	    player.minotaur.start();
+	public ActionListener(Game gm) {
+		this.gm = gm;
+
+		gm.getWindow().getCanvas().addKeyListener(this);
 	}
 	
-	public void mouseReleasedLeft(MouseEvent a) {
-		player.minotaur.stop();
-		player.minotaur.reset();
-		player.minotaur = player.MinoIdle;
+	public void update() {
+		for(int i = 0; i < NUM_KEYS; i++) {
+			keysLast[i] = keys[i];
+		}
 	}
 
-	// Move Right
-	public void mousePressedRight(MouseEvent d) {
-	    player.minotaur = player.MinoWalkLeft;
-	    player.minotaur.start();
+	public boolean isKey(int keyCode) {
+		return keys[keyCode];
 	}
 	
-	public void mouseReleasedRight(MouseEvent d) {
-		player.minotaur.stop();
-		player.minotaur.reset();
-		player.minotaur = player.MinoIdle;
+	public boolean isKeyUp(int keyCode) {
+		return !keys[keyCode] && keysLast[keyCode];
+	}
+	
+	public boolean isKeyDown(int keyCode) {
+		return keys[keyCode] && !keysLast[keyCode];
 	}
 
-	// Attack - Still need to change it to toggle event handler - remind Adir if you see this comment.
-	public void mousePressedAttack1(MouseEvent x) {
-	    player.minotaur = player.MinoAttack1;
-	    player.minotaur.start();
+	@Override
+	public void keyPressed(KeyEvent e) {
+		keys[e.getKeyCode()] = true;
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		keys[e.getKeyCode()] = false;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {}
+
+	public void moveLeft() {
+//    	System.out.println("Left");
+	    Player.minotaur = Player.MinoWalkLeft;
+	    Player.minotaur.start();
 	}
 	
-	public void mouseReleasedAttack1(MouseEvent x) {
-		player.minotaur.stop();
-		player.minotaur.reset();
-		player.minotaur = player.MinoIdle;
+	public void moveRight() {
+//    	System.out.println("Right");
+	    Player.minotaur = Player.MinoWalkRight;
+	    Player.minotaur.start();
+	}
+	
+	public void attack() {
+//    	System.out.println("attack");
+	    Player.minotaur = Player.MinoAttack1;
+	    Player.minotaur.start();
+	}
+	
+	public void idle() {
+//		System.out.println("idling");
+		Player.minotaur.stop();
+		Player.minotaur.reset();
+		Player.minotaur = Player.MinoIdle;
 	}
 }
