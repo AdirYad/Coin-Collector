@@ -65,8 +65,10 @@ public class ActionListener implements KeyListener {
 	
 	public void idle() {
 //		System.out.println("idling");
-		Player.minotaur.stop();
-		Player.minotaur.reset();
+//		Player.minotaur.stop();
+//		Player.minotaur.reset();
+		
 		Player.minotaur = Player.MinoIdle;
+	    Player.minotaur.start();
 	}
 }

@@ -2,14 +2,14 @@ import java.awt.image.BufferedImage;
 
 public class Player {
 	//Images for each animation
-		static BufferedImage[] minotaurIdle = {
+		static final BufferedImage[] minotaurIdle = {
 			Sprite.getSprite(0, 0),
 			Sprite.getSprite(1, 0),
 			Sprite.getSprite(2, 0),
 			Sprite.getSprite(3, 0),
 			Sprite.getSprite(4, 0)
 		};
-		static BufferedImage[] minotaurAttack1 = {
+		static final BufferedImage[] minotaurAttack1 = {
 			Sprite.getSprite(0, 3),
 			Sprite.getSprite(1, 3),
 			Sprite.getSprite(2, 3),
@@ -20,7 +20,7 @@ public class Player {
 			Sprite.getSprite(7, 3),
 			Sprite.getSprite(8, 3)
 		};
-		static BufferedImage[] walkingRight = {
+		static final BufferedImage[] walkingRight = {
 			Sprite.getSprite(0, 1),
 			Sprite.getSprite(1, 1),
 			Sprite.getSprite(2, 1),
@@ -30,7 +30,7 @@ public class Player {
 			Sprite.getSprite(6, 1),
 			Sprite.getSprite(7, 1)
 		};
-		static BufferedImage[] walkingLeft = {
+		static final BufferedImage[] walkingLeft = {
 			Sprite.getSprite(0, 12),
 			Sprite.getSprite(1, 12),
 			Sprite.getSprite(2, 12),
@@ -39,10 +39,10 @@ public class Player {
 		};
 		
 		//These are animation states
-		static Animation MinoIdle = new Animation(minotaurIdle, 10);
-		static Animation MinoAttack1 = new Animation(minotaurAttack1, 10);
-		static Animation MinoWalkRight = new Animation(walkingRight, 10);
-		static Animation MinoWalkLeft = new Animation(walkingLeft, 10);
+		static final Animation MinoIdle = new Animation(minotaurIdle, 10);
+		static final Animation MinoAttack1 = new Animation(minotaurAttack1, 10);
+		static final Animation MinoWalkRight = new Animation(walkingRight, 10);
+		static final Animation MinoWalkLeft = new Animation(walkingLeft, 10);
 		
 		//This is the actual animation
 		static Animation minotaur = MinoIdle;
