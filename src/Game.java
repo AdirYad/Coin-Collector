@@ -12,6 +12,8 @@ public class Game implements Runnable {
 	public static final float scale = 1f;
 	public static final String title = "Mapler4fun";
 	
+	public static int sixtySeconds;
+	
 	public Game(AbstractGame game) {
 		this.game = game;
 	}
@@ -73,7 +75,6 @@ public class Game implements Runnable {
 				render = true;
 				
 				game.update(this, (float)UPDATE_CAP);
-				
 				al.update();
 
 				if(frameTime >= 1.0) {
@@ -81,7 +82,13 @@ public class Game implements Runnable {
 					fps = frames;
 					frames = 0;
 					
-//					System.out.println("FPS: " + fps);
+					if(sixtySeconds >= 60) {
+						sixtySeconds = 0;
+					} else {
+						sixtySeconds++;
+					}
+					
+					System.out.println("FPS: " + fps);
 				}
 			}
 			

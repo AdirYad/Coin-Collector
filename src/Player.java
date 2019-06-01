@@ -6,10 +6,10 @@ enum PlayerDirection {
 }
 
 public class Player {
-	static PlayerDirection direction = PlayerDirection.RIGHT;
-	static int x;
-	static int y;
-	static int STEP = 2;
+	private static PlayerDirection direction = PlayerDirection.RIGHT;
+	private static int x;
+	private static int y;
+	private static int STEP = 2;
 	
 	//Images for each animation
 	static final BufferedImage[] minotaurIdleRight = {
@@ -102,5 +102,21 @@ public class Player {
 		}
 		
 		Player.direction = PlayerDirection.LEFT;
+	}
+	
+	public static int getX() {
+		return x;
+	}
+
+	public static void setX(int x) {
+		Player.x = x;
+	}
+
+	public static int getY() {
+		return y;
+	}
+
+	public static void setY(int y) {
+		Player.y = y;
 	}
 }

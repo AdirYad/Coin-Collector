@@ -13,6 +13,10 @@ public class Window {
 	private Graphics graphics;
 	private BufferedImage map;
 	private Animation lastUpdatedAnimation = Player.minotaur;
+
+	private int randRight;
+	private int randLeft;
+	private int rand;
 	
 	public Window(int width, int height, float scale, String title, Game game) {
 		canvas = new Canvas();
@@ -36,15 +40,15 @@ public class Window {
 		graphics = bs.getDrawGraphics();
 		
 		map = Sprite.loadSprite("mapOLD.jpg");
-		Player.x = canvas.getWidth() / 2;
-		Player.y = canvas.getHeight() - 138;
 		
+		Player.setX(canvas.getWidth() / 2);
+		Player.setY(canvas.getHeight() - 138);
 	}
 	
 	public Canvas getCanvas() {
 		return canvas;
 	}
-			
+	
 	public void update() {
 		if(lastUpdatedAnimation != Player.minotaur) {
 			lastUpdatedAnimation.reset();
@@ -55,12 +59,26 @@ public class Window {
 		lastUpdatedAnimation = Player.minotaur;
 		bs.show();
 	}
-	
+
 	public void paint() {
-//		Monster m1 = new Monster(100, 11);
 		graphics.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
-		graphics.drawImage(Player.minotaur.getSprite(), Player.x, Player.y, 120, 120, null);
-//		m1.runMonster();
+		graphics.drawImage(Player.minotaur.getSprite(), Player.getX(), Player.getY(), 120, 120, null);
+		this.monster();
+	}
+	
+	public void monster() {
+//		if(Game.sixtySeconds == 60) {
+			randRight = (int) (Math.random() * ((canvas.getWidth() + 1  - Sprite.monsterTILE_SIZEx - 42) - (Player.getX() + 201))) + (Player.getX() + 201);
+			randLeft = (int) (Math.random() * (Player.getX() - 201));
+
+			if(canvas.getX() - 500 < Player.getX()) {
+				
+			}
+
+			Monster m1 = new Monster(rand, Game.height - 102);
+			graphics.drawImage(m1.monster.getSprite(), m1.getX(), m1.getY(), 60, 68, null);
+			m1.monster.update(); // updating the monster
+//		}
 	}
 }

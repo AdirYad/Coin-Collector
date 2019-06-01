@@ -1,4 +1,3 @@
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 enum MonsterDirection {
@@ -7,13 +6,11 @@ enum MonsterDirection {
 }
 
 public class Monster {
-	private Graphics graphics;
-	
 	MonsterDirection direction = MonsterDirection.RIGHT;
-	int x;
-	int y;
-	int STEP = 2;
-	int hp;
+	private int x;
+	private int y;
+	private int STEP = 2;
+	private int hp;
 
 	//Images for each animation
 	private final BufferedImage[] monsterIdleRight = {
@@ -77,10 +74,6 @@ public class Monster {
 		this.y = y;
 	}
 	
-	public void runMonster() {
-		graphics.drawImage(monster.getSprite(), x, y, 94, 100, null);
-	}
-	
 	public Animation getIdle() {
 		if(direction == MonsterDirection.RIGHT) {
 			return MonsterIdleRight;
@@ -96,18 +89,42 @@ public class Monster {
 	}
 	
 	public void moveRight() {
-		if(Player.x + STEP <= Game.width - Sprite.monsterTILE_SIZEx - 10) {
-			Player.x += STEP;
+		if(x + STEP <= Game.width - Sprite.monsterTILE_SIZEx - 10) {
+			x += STEP;
 		}
 		
 		direction = MonsterDirection.RIGHT;
 	}
 	
 	public void moveLeft() {
-		if(Player.x - STEP > 0) {
-			Player.x -= STEP;
+		if(x - STEP > 0) {
+			x -= STEP;
 		}
 		
 		direction = MonsterDirection.LEFT;
+	}
+	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
 	}
 }
