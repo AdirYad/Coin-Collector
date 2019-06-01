@@ -14,14 +14,15 @@ public class Window {
 	private BufferStrategy bs;
 	private Graphics graphics;
 	private BufferedImage map;
-	private Animation lastUpdatedAnimation = Player.minotaur;
+	private Animation lastUpdatedPlayerAnimation = Player.minotaur;
 
 	private int randRight;
 	private int randLeft;
 	private int rand;
 	private int counter;
 	
-	private List<Monster> monsters = new ArrayList<Monster>();
+	static public List<Monster> monsters = new ArrayList<Monster>();
+	private List<Animation> lastUpdatedMonsterAnimation = new ArrayList<Animation>();
 	
 	public Window(int width, int height, float scale, String title, Game game) {
 		canvas = new Canvas();
@@ -55,33 +56,55 @@ public class Window {
 	}
 	
 	public void update() {
-		if(lastUpdatedAnimation != Player.minotaur) {
-			lastUpdatedAnimation.reset();
+		if(lastUpdatedPlayerAnimation != Player.minotaur) {
+			lastUpdatedPlayerAnimation.reset();
 		}
+		
+		monsters.forEach(i -> {
+			if(lastUpdatedMonsterAnimation.get(monsters.indexOf(i)) != i.monster) {
+				i.monster.reset();
+			}
+		});
 		
 		paint();
 		Player.minotaur.update(); // updating the minotaur
-		monsters.forEach((i) -> {
+		monsters.forEach(i -> {
 			i.monster.update(); // updating the monster
+			lastUpdatedMonsterAnimation.set(monsters.indexOf(i), i.monster);
 		});
 		
-		lastUpdatedAnimation = Player.minotaur;
+		lastUpdatedPlayerAnimation = Player.minotaur;
 		bs.show();
 	}
 
+
+	
 	public void paint() {
 		graphics.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
 		graphics.drawImage(Player.minotaur.getSprite(), Player.getX(), Player.getY(), 120, 120, null);
-		this.monster();
+		callMonster();
 	}
 	
 	public void reset() {
 		counter = 0;
 	}
 	
-	public void monster() {
-		if(Game.sixtySeconds == 3) {
+	public void callMonster() {
+		createMonster();
+		
+		monsters.forEach(i -> {
+			if(i.isIfNew()) {
+				lastUpdatedMonsterAnimation.add(i.monster);
+				i.setIfNew(false);
+			}
+
+			graphics.drawImage(i.monster.getSprite(), i.getX(), i.getY(), 60, 68, null);
+		});
+	}
+	
+	public void createMonster() {
+		if(Game.sixtySeconds == 1) {
 			if(counter == 0) {
 				randRight = (int) (Math.random() * ((canvas.getWidth() + 1  - Sprite.monsterTILE_SIZEx - 42) - (Player.getX() + 301))) + (Player.getX() + 301);
 				randLeft = (int) (Math.random() * (Player.getX() - 301));
@@ -104,9 +127,5 @@ public class Window {
 
 			monsters.add(new Monster(rand, Game.height - 102));
 		}
-		
-		monsters.forEach((i) -> {
-			graphics.drawImage(i.monster.getSprite(), i.getX(), i.getY(), 60, 68, null);
-		});
 	}
 }

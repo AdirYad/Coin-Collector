@@ -7,8 +7,8 @@ public class Sprite {
 	private static final BufferedImage monsterSheet = loadSprite("Dwarf.png");
     public static final int minoTILE_SIZEx = 80;
     private static final int minoTILE_SIZEy = 80;
-    public static final int monsterTILE_SIZEx = 30;
-    private static final int monsterTILE_SIZEy = 32;
+    public static final int monsterTILE_SIZEx = 32;
+    private static final int monsterTILE_SIZEy = 34;
     
 
     public static BufferedImage loadSprite(String file) {

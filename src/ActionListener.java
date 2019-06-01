@@ -45,22 +45,22 @@ public class ActionListener implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {}
 
-	public void moveLeft() {
+	public void playerMoveLeft() {
 	    Player.minotaur = Player.MinoWalkLeft;
 	    Player.minotaur.start();
 	}
 	
-	public void moveRight() {
+	public void playerMoveRight() {
 	    Player.minotaur = Player.MinoWalkRight;
 	    Player.minotaur.start();
 	}
 	
-	public void attack() {
+	public void playerAttack() {
 	    Player.minotaur = Player.getAttack();
 	    Player.minotaur.start();
 	}
 	
-	public void idle() {
+	public void playerIdle() {
 		Player.minotaur = Player.getIdle();
 	    Player.minotaur.start();
 	}

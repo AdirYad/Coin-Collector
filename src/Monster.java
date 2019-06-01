@@ -11,6 +11,7 @@ public class Monster {
 	private int y;
 	private int STEP = 2;
 	private int hp;
+	private boolean ifNew;
 
 	//Images for each animation
 	private final BufferedImage[] monsterIdleRight = {
@@ -72,16 +73,17 @@ public class Monster {
 	public Monster(int x, int y) {
 		this.x = x;
 		this.y = y;
+		ifNew = true;
 	}
 	
-	public Animation getIdle() {
+	public Animation monsterGetIdle() {
 		if(direction == MonsterDirection.RIGHT) {
 			return MonsterIdleRight;
 		}
 		return MonsterIdleLeft;
 	}
 	
-	public Animation getAttack() {
+	public Animation monsterGetAttack() {
 		if(direction == MonsterDirection.RIGHT) {
 			return MonsterAttackRight;
 		}
@@ -103,6 +105,28 @@ public class Monster {
 		
 		direction = MonsterDirection.LEFT;
 	}
+	
+	public void monsterMoveLeft() {
+		monster = MonsterWalkLeft;
+	    monster.start();
+	}
+	
+	public void monsterMoveRight() {
+	    monster = MonsterWalkLeft;
+	    monster.start();
+	}
+	
+	public void monsterAttack() {
+		monster = monsterGetAttack();
+		monster.start();
+	}
+	
+	public void monsterIdle() {
+		monster = monsterGetIdle();
+		monster.start();
+	}
+	
+	// -------------
 	
 	public int getX() {
 		return x;
@@ -126,5 +150,13 @@ public class Monster {
 
 	public void setHp(int hp) {
 		this.hp = hp;
+	}
+	
+	public boolean isIfNew() {
+		return ifNew;
+	}
+
+	public void setIfNew(boolean ifNew) {
+		this.ifNew = ifNew;
 	}
 }

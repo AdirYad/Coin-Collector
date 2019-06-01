@@ -32,7 +32,7 @@ public class Animation {
             return;
         }
 
-        if (frames.size() == 0) {
+        if (totalFrames == 0) {
             return;
         }
 
@@ -40,7 +40,7 @@ public class Animation {
     }
 
     public Animation stop() {
-        if (frames.size() == 0) {
+        if (totalFrames == 0) {
             return this;
         }
 
@@ -49,7 +49,7 @@ public class Animation {
     }
 
     public void restart() {
-        if (frames.size() == 0) {
+        if (totalFrames == 0) {
             return;
         }
 

@@ -82,7 +82,7 @@ public class Game implements Runnable {
 					fps = frames;
 					frames = 0;
 					
-					if(sixtySeconds >= 3) {
+					if(sixtySeconds >= 1) {
 						sixtySeconds = 0;
 						window.reset();
 					} else {
