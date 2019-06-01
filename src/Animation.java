@@ -10,7 +10,7 @@ public class Animation {
     private int totalFrames;             // total amount of frames for your animation
     private boolean stopped;                // has animations stopped
 
-    private List<Frame> frames = new ArrayList<Frame>();    // Arraylist of frames 
+    private List<Frame> frames = new ArrayList<Frame>();    // Array list of frames 
 
     public Animation(BufferedImage[] frames, int frameDelay) {
         this.frameDelay = frameDelay;

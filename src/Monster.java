@@ -37,14 +37,14 @@ public class Monster {
 		Sprite.getMonsterSprite(6, 2)
 	};
 	private final BufferedImage[] monsterAttackLeft = {
-			Sprite.getMonsterSprite(0, 7),
-			Sprite.getMonsterSprite(1, 7),
-			Sprite.getMonsterSprite(2, 7),
-			Sprite.getMonsterSprite(3, 7),
-			Sprite.getMonsterSprite(4, 7),
-			Sprite.getMonsterSprite(5, 7),
-			Sprite.getMonsterSprite(6, 7)
-		};
+		Sprite.getMonsterSprite(0, 7),
+		Sprite.getMonsterSprite(1, 7),
+		Sprite.getMonsterSprite(2, 7),
+		Sprite.getMonsterSprite(3, 7),
+		Sprite.getMonsterSprite(4, 7),
+		Sprite.getMonsterSprite(5, 7),
+		Sprite.getMonsterSprite(6, 7)
+	};
 	private final BufferedImage[] walkingRight = {
 		Sprite.getMonsterSprite(0, 3),
 		Sprite.getMonsterSprite(1, 3),

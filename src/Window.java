@@ -1,8 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Graphics;
+import java.util.List;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
@@ -17,6 +19,9 @@ public class Window {
 	private int randRight;
 	private int randLeft;
 	private int rand;
+	private int counter;
+	
+	private List<Monster> monsters = new ArrayList<Monster>();
 	
 	public Window(int width, int height, float scale, String title, Game game) {
 		canvas = new Canvas();
@@ -56,6 +61,10 @@ public class Window {
 		
 		paint();
 		Player.minotaur.update(); // updating the minotaur
+		monsters.forEach((i) -> {
+			i.monster.update(); // updating the monster
+		});
+		
 		lastUpdatedAnimation = Player.minotaur;
 		bs.show();
 	}
@@ -67,27 +76,37 @@ public class Window {
 		this.monster();
 	}
 	
+	public void reset() {
+		counter = 0;
+	}
+	
 	public void monster() {
-//		if(Game.sixtySeconds == 60) {
-			randRight = (int) (Math.random() * ((canvas.getWidth() + 1  - Sprite.monsterTILE_SIZEx - 42) - (Player.getX() + 401))) + (Player.getX() + 401);
-			randLeft = (int) (Math.random() * (Player.getX() - 401));
-
-			if(canvas.getWidth() - 600 < Player.getX()) {
-				rand = randLeft;
-			} else if(600 > Player.getX()) {
-				rand = randRight;
-			} else {
-				int leftOrRight = (int) (Math.random() * (3));
-				if(leftOrRight == 1) {
+		if(Game.sixtySeconds == 3) {
+			if(counter == 0) {
+				randRight = (int) (Math.random() * ((canvas.getWidth() + 1  - Sprite.monsterTILE_SIZEx - 42) - (Player.getX() + 301))) + (Player.getX() + 301);
+				randLeft = (int) (Math.random() * (Player.getX() - 301));
+				
+				if(canvas.getWidth() - 600 < Player.getX()) {
 					rand = randLeft;
-				} else {
+				} else if(600 > Player.getX()) {
 					rand = randRight;
+				} else {
+					int leftOrRight = (int) (Math.random() * (3 - 1)) + 1;
+					if(leftOrRight == 1) {
+						rand = randLeft;
+					} else {
+						rand = randRight;
+					}
 				}
+				
+				counter++;
 			}
 
-			Monster m1 = new Monster(rand, Game.height - 102);
-			graphics.drawImage(m1.monster.getSprite(), m1.getX(), m1.getY(), 60, 68, null);
-			m1.monster.update(); // updating the monster
-//		}
+			monsters.add(new Monster(rand, Game.height - 102));
+		}
+		
+		monsters.forEach((i) -> {
+			graphics.drawImage(i.monster.getSprite(), i.getX(), i.getY(), 60, 68, null);
+		});
 	}
 }
