@@ -69,11 +69,20 @@ public class Window {
 	
 	public void monster() {
 //		if(Game.sixtySeconds == 60) {
-			randRight = (int) (Math.random() * ((canvas.getWidth() + 1  - Sprite.monsterTILE_SIZEx - 42) - (Player.getX() + 201))) + (Player.getX() + 201);
-			randLeft = (int) (Math.random() * (Player.getX() - 201));
+			randRight = (int) (Math.random() * ((canvas.getWidth() + 1  - Sprite.monsterTILE_SIZEx - 42) - (Player.getX() + 401))) + (Player.getX() + 401);
+			randLeft = (int) (Math.random() * (Player.getX() - 401));
 
-			if(canvas.getX() - 500 < Player.getX()) {
-				
+			if(canvas.getWidth() - 600 < Player.getX()) {
+				rand = randLeft;
+			} else if(600 > Player.getX()) {
+				rand = randRight;
+			} else {
+				int leftOrRight = (int) (Math.random() * (3));
+				if(leftOrRight == 1) {
+					rand = randLeft;
+				} else {
+					rand = randRight;
+				}
 			}
 
 			Monster m1 = new Monster(rand, Game.height - 102);
