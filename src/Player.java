@@ -10,7 +10,7 @@ public class Player {
 	private static int x;
 	private static int y;
 	private static int STEP = 5;
-	
+
 	//Images for each animation
 	static final BufferedImage[] minotaurIdleRight = {
 		Sprite.getPlayerSprite(0, 0),
@@ -118,5 +118,13 @@ public class Player {
 
 	public static void setY(int y) {
 		Player.y = y;
+	}
+	
+	public static int getSTEP() {
+		return STEP;
+	}
+
+	public static void setSTEP(int sTEP) {
+		STEP = sTEP;
 	}
 }

@@ -24,6 +24,8 @@ public class Window {
 	private int coinLeftX;
 	private int coinRightX;
 	private final int coinSize = 128;
+	private int threeSecs;
+	private boolean isThreeSecs;
 	
 	private Coin coin = new Coin();
 	
@@ -76,9 +78,19 @@ public class Window {
 	public void paint() {
 		graphics.clearRect(0, 0, canvas.getWidth(), canvas.getHeight()); // clearing the frames every nano second
 		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
-		graphics.drawImage(Player.minotaur.getSprite(), Player.getX(), Player.getY(), 120, 120, null); // drawing the player
+		if(coinsAmount < 5) {
+			graphics.drawImage(Player.minotaur.getSprite(), Player.getX(), Player.getY(), 120, 120, null); // drawing the player
+		} else if(coinsAmount >= 5) {
+			Player.setSTEP(7);
+			graphics.drawImage(Player.minotaur.getSprite(), Player.getX(), Player.getY() - 20, 140, 140, null); // drawing the player
+		}
+		
 		if(Game.isThreeSecs()) {
-			graphics.drawImage(coin.coin, coin.getX(), Player.getY() + 62, 30, 30, null); // drawing the coins
+			if(coinsAmount < 10) {
+				graphics.drawImage(coin.coin, coin.getX(), coin.getY(), 30, 30, null); // drawing the coins
+			} else {
+				graphics.drawImage(coin.coin, coin.getX(), coin.getY(), 20, 20, null); // drawing the coins
+			}
 		}
 	}
 	
@@ -97,10 +109,16 @@ public class Window {
 				graphics.drawString("Coins Collected: " + coinsAmount, 35, Player.getY() - 30);
 			}
 			
-			if(coinsAmount >= 10) {
+			if(coinsAmount >= 10 && coinsAmount <= 15 && !isThreeSecs) {
 				graphics.setFont(new Font("Arial", Font.BOLD, 60));
 				graphics.setColor(Color.white);
-				graphics.drawString("CONGRATS, YOU HAVE REACHED " + coinsAmount + " COINS!", canvas.getWidth() / 2 - 600, 200);
+				graphics.drawString("GET READY!!", canvas.getWidth() / 2 - 225, 200);
+				threeSecs++;
+				
+				if(!isThreeSecs && threeSecs >= 200) {
+					isThreeSecs = true;
+					threeSecs = 0;
+				}
 			}
 		} else {
 			if(Game.getThreeSecs() == 0) {	
@@ -122,11 +140,19 @@ public class Window {
 			rand();
 		}
 
-		coin = new Coin(rand, Game.height - 65);
-		isCoin = true;
+		if(coinsAmount < 10) {
+			coin = new Coin(rand, Player.getY() + 62);
+			isCoin = true;
 
-		coinLeftX = coin.getX() - 68;
-		coinRightX = coin.getX() - 14;
+			coinLeftX = coin.getX() - 68;
+			coinRightX = coin.getX() - 14;
+		} else {
+			coin = new Coin(rand, Player.getY() + 72);
+			isCoin = true;
+
+			coinLeftX = coin.getX() - 68;
+			coinRightX = coin.getX() - 24;
+		}
 	}
 	
 	public void checkCoin() {
@@ -137,6 +163,12 @@ public class Window {
 		}
 		
 		if(coinsAmount == 0 && !isCoin && Game.isThreeSecs()) { // happens only once - creating the first coin
+			createCoin();
+		}
+	}
+	
+	public void ifOneSecGone() {
+		if(coinsAmount >= 10) {
 			createCoin();
 		}
 	}

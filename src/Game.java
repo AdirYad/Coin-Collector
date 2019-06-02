@@ -16,6 +16,7 @@ public class Game implements Runnable {
 	
 	private static int threeSecs = 3;
 	private static boolean isThreeSecs = false;
+	static int oneSec;
 
 	public Game(AbstractGame game) {
 		this.game = game;
@@ -84,6 +85,13 @@ public class Game implements Runnable {
 					frameTime = 0;
 					fps = frames;
 					frames = 0;
+					
+					if(oneSec == 0) {
+						oneSec++;
+						window.ifOneSecGone();
+					} else {
+						oneSec = 0;
+					}
 					
 					if(!isThreeSecs) {
 						threeSecs--;
