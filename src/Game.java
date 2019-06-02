@@ -10,10 +10,13 @@ public class Game implements Runnable {
 	public static final int width = 1620;
 	public static final int height = 1000;
 	public static final float scale = 1f;
-	public static final String title = "Mapler4fun";
+	public static final String title = "Coin Collector";
 	
-	public static int sixtySeconds;
+	private static int fps;
 	
+	private static int threeSecs = 3;
+	private static boolean isThreeSecs = false;
+
 	public Game(AbstractGame game) {
 		this.game = game;
 	}
@@ -58,7 +61,7 @@ public class Game implements Runnable {
 		
 		double frameTime = 0;
 		int frames = 0;
-		int fps = 0;
+		fps = 0;
 		
 		while(running) {
 			render = false;
@@ -82,14 +85,12 @@ public class Game implements Runnable {
 					fps = frames;
 					frames = 0;
 					
-					if(sixtySeconds >= 1) {
-						sixtySeconds = 0;
-						window.reset();
-					} else {
-						sixtySeconds++;
+					if(!isThreeSecs) {
+						threeSecs--;
+						if(threeSecs < 0) {
+							isThreeSecs = true;
+						}
 					}
-					
-					System.out.println("FPS: " + fps);
 				}
 			}
 			
@@ -107,8 +108,16 @@ public class Game implements Runnable {
 		
 		stop();
 	}
-	
-	public void dispose() {
-		
+
+	public static int getThreeSecs() {
+		return threeSecs;
+	}
+
+	public static boolean isThreeSecs() {
+		return isThreeSecs;
+	}
+
+	public static int getFps() {
+		return fps;
 	}
 }

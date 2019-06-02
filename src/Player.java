@@ -9,7 +9,7 @@ public class Player {
 	private static PlayerDirection direction = PlayerDirection.RIGHT;
 	private static int x;
 	private static int y;
-	private static int STEP = 2;
+	private static int STEP = 5;
 	
 	//Images for each animation
 	static final BufferedImage[] minotaurIdleRight = {
@@ -89,7 +89,7 @@ public class Player {
 	}
 	
 	public static void moveRight() {
-		if(Player.x + STEP <= Game.width - Sprite.minoTILE_SIZEx - 18) {
+		if(Player.x + STEP <= Game.width - Sprite.MINO_SIZEx - 18) {
 			Player.x += STEP;
 		}
 		

@@ -20,10 +20,6 @@ public class Main extends AbstractGame {
 			gm.getAl().playerIdle();
 		}
 		
-		Window.monsters.forEach((i) -> {
-			i.monsterIdle();
-		});
-		
 		frame++;
 	}
 	
