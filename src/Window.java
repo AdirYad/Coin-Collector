@@ -78,7 +78,7 @@ public class Window {
 		graphics.drawImage(map, 0, 0, canvas.getWidth(), canvas.getHeight(), null); // drawing the map
 		graphics.drawImage(Player.minotaur.getSprite(), Player.getX(), Player.getY(), 120, 120, null); // drawing the player
 		if(Game.isThreeSecs()) {
-			graphics.drawImage(coin.coin, coin.getX(), coin.getY(), 30, 30, null); // drawing the coins
+			graphics.drawImage(coin.coin, coin.getX(), Player.getY() + 62, 30, 30, null); // drawing the coins
 		}
 	}
 	
